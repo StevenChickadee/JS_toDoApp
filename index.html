@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Štěpán's TO-DO List</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+
+<!--BODY-->
+<body id="body">
+
+    <!--HEADER-->
+    <header id="header">
+        <h1 id="header_text">Štěpán's TO-DO List</h1>
+    </header>
+
+    <!--Main content of the page - TO-DO List web app-->
+    <main id="main">
+
+        <!--Input section-->
+        <form id="inputSection">
+            <input type="text" id="inputSection_textBox" placeholder="What have you planned?">
+            <button type="button" id="inputSection_submitButton">Submit</button>
+        </form>
+
+        <!--Section with list of all TO-DO entities-->
+        <section id="listSection">
+            <ul id="listSection_list">
+                <!-- This structure is made in JS code:
+                <div class="listSection_listEntity">
+                    <li class="listSection_listEntity_text">TO-DO List entity</li>
+                    <button class="listSection_listEntity_deleteButton">Delete</button>
+                </div>
+                -->
+            </ul>  
+        </section>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+
+</html>

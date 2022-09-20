@@ -1,0 +1,68 @@
+/*ID selectors*/
+/*Removes default browser styling*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*Body*/
+#body{  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*Header*/
+#header{
+    background-color: beige;
+    min-width: auto;
+    padding: 1rem;
+}
+#header_text{
+    display: flex;
+    justify-content: center;
+}
+/*Main content*/
+#main{
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 200px;
+    max-width: 1000px;
+    padding: 1rem;
+}
+#inputSection{
+    background-color: darkgray;
+    display: flex;
+    justify-content: center;
+    min-width: 600px;
+    padding: 1rem;
+}
+#inputSection_textBox{
+    border: none;
+}
+#inputSection_submitButton{
+    border: none;
+    cursor: pointer;
+}
+#listSection{
+    background-color: lightgray;
+    min-width: 600px;
+    padding: 1rem;
+}
+
+/*Classes*/
+#listSection .listSection_listEntity{
+    display: flex;
+    justify-content: center;
+}
+#listSection .listSection_listEntity_text{
+    list-style-type: none;
+    border: none;
+}
+#listSection .listSection_listEntity_deleteButton{
+    border: none;
+    cursor: pointer;
+}
