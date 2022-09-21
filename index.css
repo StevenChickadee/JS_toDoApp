@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 /*Body*/
-#body{  
+body{  
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,8 +59,11 @@
     justify-content: center;
 }
 #listSection .listSection_listEntity_text{
-    list-style-type: none;
     border: none;
+}
+#listSection .listSection_listEntity_editButton{
+    border: none;
+    cursor: pointer;
 }
 #listSection .listSection_listEntity_deleteButton{
     border: none;

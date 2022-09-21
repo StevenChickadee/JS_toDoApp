@@ -1,38 +1,47 @@
 //Selectors
+const inputSection = document.getElementById('inputSection');
 const inputSection_textBox = document.getElementById('inputSection_textBox');
 const inputSection_submitButton = document.getElementById('inputSection_submitButton');
 const listSection = document.getElementById('listSection');
-const listSection_list = document.getElementById('listSection_list');
 
 //Event Listeners
 //listens for submit button click
 inputSection_submitButton.addEventListener('click', addTodoEntity);
-//listens for any click in 'listSection_list'
-listSection_list.addEventListener('click', deleteButtonCheck);
+//listens for 'Enter' press
+inputSection.addEventListener('submit', addTodoEntity);
 
 //Functions
 //creates and adds new TO-DO entity into TO-DO list
 function createNewEntity(textBoxValue){
     //create elements
-    const div = document.createElement('div');
-    const li = document.createElement('li');
-    const button = document.createElement('button')
+    const form = document.createElement('form');
+    const input = document.createElement('input');
+    const editButton = document.createElement('button')
+    const deleteButton = document.createElement('button')
 
     //append elements to DOM
-    listSection_list.appendChild(div);
-    div.appendChild(li);
-    div.appendChild(button);
+    listSection.appendChild(form);
+    form.appendChild(input);
+    form.appendChild(editButton);
+    form.appendChild(deleteButton);
 
     //manipulate elements
-    div.classList.add('listSection_listEntity');
-    li.classList.add('listSection_listEntity_text');
-    li.innerHTML = textBoxValue;
-    button.classList.add('listSection_listEntity_deleteButton');
-    button.innerHTML = 'Delete';
+    form.classList.add('listSection_listEntity');
+    input.classList.add('listSection_listEntity_text');
+    input.value = textBoxValue;
+    input.type = 'text';
+    input.readOnly = true;
+    editButton.classList.add('listSection_listEntity_editButton');
+    editButton.innerHTML = 'Edit';
+    editButton.addEventListener('click', editTodoEntity);
+    deleteButton.classList.add('listSection_listEntity_deleteButton');
+    deleteButton.innerHTML = 'Delete';
+    deleteButton.addEventListener('click', deleteTodoEntity);
 
     //clears input text
     inputSection_textBox.value = '';
 }
+
 //calls TO-DO entity creation if possible
 function addTodoEntity(event){
     event.preventDefault();
@@ -40,19 +49,44 @@ function addTodoEntity(event){
     //check if there is a value in input field
     if(inputSection_textBox.value.length != 0){
         createNewEntity(inputSection_textBox.value);
-    }else{
-        alert('Please input your TO-DO');
-    }
-}
-
-//checks if user clicked TO-DO entity delete button
-function deleteButtonCheck(event){
-    if(event.target.className == 'listSection_listEntity_deleteButton'){
-        deleteTodoEntity(event.target);
     }
 }
 
 //deletes TO-DO entity
-function deleteTodoEntity(buttonClicked){
-    buttonClicked.parentElement.remove();
+function deleteTodoEntity(){
+    this.parentElement.remove();
+}
+
+//edits TO-DO entity
+function editTodoEntity(event){
+    event.preventDefault();
+
+    const input = this.previousSibling;
+
+
+    //check if we are editing or saving
+    if(input.readOnly){ //if we want to edit
+        this.innerHTML = 'Save';
+        
+        const originalInputText = input.value;
+
+        input.readOnly = false;
+        input.focus();
+
+        //input.addEventListener('blur', submitChange(input, originalInputText));
+        
+        return;
+    }else{              //if we want to save
+        this.innerHTML = 'Edit';
+        submitChange(input, input.value)
+        return;
+    }
+}
+
+//submit change of TO-DO Entity
+function submitChange(input, text){
+    input.removeEventListener('blur', submitChange);
+    input.value = text;
+    input.readOnly = true;
+    console.log('change submitted');
 }
